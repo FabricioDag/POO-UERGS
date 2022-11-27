@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO Uergs</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="json-btns">
+            <button>importar</button>
+            <button>exportar</button>
+        </div>
+        <h1>Processos</h1>
+        <div class="additem-area">
+            <h3>Adicionar Processo</h3>
+            <input id="process" type="text" required name="title" placeholder="Insira o nome do processo">
+            <input id="duration" type="number" required name="duration" placeholder="Insira a duração">
+            <input onclick="process.save()" type="submit" value="+">
+        </div>
+        <div class="searchitem-area">
+            <h3>Procurar Processo</h3>
+            <input type="text" required name="title" placeholder="Insira o nome/duraçao/id do processo">
+            <input type="submit">  
+        </div>
+        <hr>
+        <div class="process-list">
+            <h3>Lista de Processos</h3>
+
+            <div class="process">
+                <h2 class="id-process">01</h2>
+                <h2 class="title-process">Chapeamento</h2>
+                <span class="duration-process">8</span><p>min</p>
+                <div class="btns-process">
+                    <button>edit</button>
+                    <button onclick="process.exclude()">exclude </button>
+                    <button>ver</button>
+                </div>
+            </div>
+
+            <div class="process">
+                <h2 class="id-process">02</h2>
+                <h2 class="title-process">Blindagem</h2>
+                <span class="duration-process">40</span><p>min</p>
+                <div class="btns-process">
+                    <button>edit</button>
+                    <button>exclude </button>
+                    <button>ver</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <table border="1"> 
+                <thead>
+                    <th>ID</th>
+                    <th>Processo</th>
+                    <th>Duração</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td class="center" >#001</td>
+                        <td>Chapeamento</td>
+                        <td>40min</td>
+                        <td class="center">
+                            <button>edit</button>
+                            <button>exlcude</button>
+                            <button>view</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
