@@ -7,12 +7,18 @@
     <title>POO Uergs</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
+        <div class="box"></div>
         <div class="json-btns">
-            <button>importar</button>
-            <button>exportar</button>
+            <button onclick="process.import()">
+                <i class="fa-sharp fa-solid fa-file-import"></i>
+            </button>
+            <button onclick="process.export()">
+                <i class="fa-sharp fa-solid fa-download"></i> 
+            </button>
         </div>
         <h1>Processos</h1>
         <div class="additem-area">
@@ -23,11 +29,11 @@
         </div>
         <div class="searchitem-area">
             <h3>Procurar Processo</h3>
-            <input type="text" required name="title" placeholder="Insira o nome/duraçao/id do processo">
-            <input type="submit">  
+            <input id="searchProcess" type="text" required name="title" placeholder="Insira o nome/duraçao/id do processo">
+            <input onclick="process.searchInArray()" type="submit">  
         </div>
         <hr>
-        <div class="process-list">
+        <div class="process-list hide">
             <h3>Lista de Processos</h3>
 
             <div class="process">
@@ -63,7 +69,7 @@
                     <th>Ações</th>
                 </thead>
                 <tbody id="tbody">
-                    <tr>
+                    <tr class="hide">
                         <td class="center" >#001</td>
                         <td>Chapeamento</td>
                         <td>40min</td>
