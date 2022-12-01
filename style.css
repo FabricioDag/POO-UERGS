@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: aqua;
+}
+
+.container{
+    background-color: antiquewhite;
+    padding: 2rem;
+}
+
+.addProcesso{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    padding: 1rem;
+}
+
+.addProcesso h2{
+    margin-bottom: 1rem;
+}
+
+input[type='text'], input[type='number'],input[type='submit'] {
+    padding: .3rem;
+}
+
+.addProcesso input[type='text'], input[type='number']{
+    margin-bottom: 1rem;
+}
+
+.areaProcessos{
+    background-color: aquamarine;
+    padding: 1rem;
+}
+
+.processo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: azure;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+}
+
+.processo button{
+    padding: .3rem;
+}
