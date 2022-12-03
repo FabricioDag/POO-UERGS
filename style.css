@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -8,48 +10,204 @@ body{
     min-height: 100vh;
     display: grid;
     place-items: center;
-    background-color: aqua;
+    background-color: rgb(166, 196, 230);
+    font-family: 'Roboto', sans-serif;
+}
+
+.hide{
+    display: none;
 }
 
 .container{
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
     padding: 2rem;
+    display: flex;
+    border-radius: 1rem;
 }
+
+.left-side{
+    padding: 2rem;
+    background-color: rgba(192, 192, 56, 0);
+}
+
+.right-side{
+    position: relative;
+    padding: 2rem;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.jsonBtns{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    background-color: rgba(0, 128, 0, 0);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-25%);
+    gap: .5rem;
+}
+
+input[type="file"] {
+    color: transparent;
+}
+
 
 .addProcesso{
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
-    padding: 1rem;
+    background-color: rgb(166, 196, 230);
+    padding: 1.5rem;
+    border-radius: 1rem;
 }
 
 .addProcesso h2{
     margin-bottom: 1rem;
+    color:  rgb(32, 71, 116);
 }
 
 input[type='text'], input[type='number'],input[type='submit'] {
-    padding: .3rem;
+    padding: .5rem;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    background-color:rgb(245, 250, 253) ;
+    border-radius: .4rem;
 }
 
-.addProcesso input[type='text'], input[type='number']{
+input[type='submit']{
+    border-radius: 1rem;
+    padding: .5rem;
+    border: none;
+    background-color: rgb(87, 159, 223);
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+}
+
+input[type='submit']:hover{
+    background-color: rgb(36, 87, 133);
+}
+
+
+.input-box{
+    position: relative;
+    background-color: rgba(127, 255, 212, 0);
+    margin-bottom: .5rem;
+    align-items: center;
+    padding:.4rem 0;
+}
+
+/*
+.labelInput{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    pointer-events: none;
+    transition: .2s;
+    font-size: 12px;
+    color: rgba(128, 128, 128, 0.596);
+    font-weight: bold;
+}
+*/
+
+label{
+    color:rgb(32, 71, 116);
+}
+
+label span{
+    color: rgb(248, 21, 21);
+    font-size: smaller;
+    margin-left: .3rem;
+}
+
+.inputUser:focus{
+    background-color: rgb(255, 255, 255);
+}
+
+
+.searchArea{
+    display: flex;
+    padding: 1rem;
+    background-color: rgb(166, 196, 230);
+    border-radius: 1rem;
     margin-bottom: 1rem;
 }
 
-.areaProcessos{
-    background-color: aquamarine;
-    padding: 1rem;
+.searchArea button{
+    margin-left: 1rem;
 }
 
+.listagemProcessos{
+    background-color: rgb(166, 196, 230);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.listagemProcessos h1{
+    color: rgb(32, 71, 116);
+}
+
+.areaProcessos{
+    background-color: rgba(127, 255, 212, 0);
+    padding: 1rem 0;
+}
+
+button{
+    padding: .5rem;
+    border: none;
+    background-color:rgb(130, 176, 216) ;
+    border-radius: .3rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover i{
+    color: white;
+}
+
+button:hover{
+    background-color:rgb(36, 87, 133) ;
+}
+
+
 .processo{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 3fr 3fr;
     justify-content: space-around;
     align-items: center;
-    background-color: azure;
+    background-color: rgb(253, 253, 253);
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
     margin: 1rem 0;
 }
 
-.processo button{
-    padding: .3rem;
+.id,.nome,.duracao,.especialista,.açoes{
+    background-color: rgba(0, 255, 255, 0);
+    margin-right: 1rem;
+}
+
+.especialista{
+    text-align: center;
+}
+
+.açoes{
+    display: flex;
+    justify-content: space-around;
+}
+
+.clock{
+    font-size: smaller;
+    margin-left: .2rem;
+    color: rgba(0, 0, 0, 0.575);
+}
+
+
+
+
+.semEspecializacao{
+    color: rgba(0, 0, 0, 0.781);
+    font-size: small;
 }

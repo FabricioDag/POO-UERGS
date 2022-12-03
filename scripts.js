@@ -9,7 +9,7 @@ class Processo{
 
     static pesquisar(nome){
         //Pesquisa na net o nome do processo
-        alert('Pesquisando item' + nome)
+        
         const a = document.createElement('a')
         a.style = 'display: none'
         document.body.appendChild(a)
@@ -153,7 +153,7 @@ function adicionar(){
 }
 
 function remover(id){
-    if(confirm('Deseja deletar o produto ID' + id + '?')){
+    if(confirm('Deseja deletar o Processo ID' + id + '?')){
         //poderia ser usado o forEach
         for(let i = 0; i< arrayProcessos.length; i++){
             if(arrayProcessos[i].id == id){
@@ -170,7 +170,7 @@ function procurar(){
     let processosParecidos = []
     for(let i = 0 ; i < arrayProcessos.length; i++){
         if(arrayProcessos[i].nome.includes(procurarProcesso)){
-            alert('achou um igual id: ' + arrayProcessos[i].id)
+            //alert('achou um igual id: ' + arrayProcessos[i].id)
             processosParecidos.push(arrayProcessos[i])
             mostrarProcessos(processosParecidos)
         }
@@ -180,9 +180,12 @@ function procurar(){
 function editar(dados){
     editId = dados.id;
     document.getElementById("salvar").value = "Atualizar"
+    document.getElementById("addProcessoTitulo").innerText = "Atualizar Processo"
     document.getElementById("nomeProcesso").value = dados.nome
     document.getElementById("duracaoProcesso").value = dados.duracao
-    document.getElementById("especializacaoProcesso").value = dados.especializacao
+    if(dados.especializacao != null){
+        document.getElementById("especializacaoProcesso").value = dados.especializacao
+    } 
 }
 
 function atualizar(id){
@@ -200,6 +203,7 @@ function atualizar(id){
     editId = null
     cancelar()
     document.getElementById("salvar").value = "Adicionar"
+    document.getElementById("addProcessoTitulo").innerText = "Adicionar Processo"
     mostrarProcessos(arrayProcessos)
 }
 
@@ -249,7 +253,7 @@ function mostrarProcessos(listaProcessos){
     //permite que eu passe diferentes listas em momentos diferentes mais possibilidade de expandir o projeto
     let containerProcessos = document.getElementById("containerProcessos")
     containerProcessos.innerHTML = ''
-
+    
     for(let i = 0; i < listaProcessos.length; i++){
         //cria capsula processo
         let processo = document.createElement('div')
@@ -274,10 +278,24 @@ function mostrarProcessos(listaProcessos){
         duracao.innerText = listaProcessos[i].duracao
         processo.appendChild(duracao)
 
+        //cria duracao icone
+        let relogioIcone = document.createElement('i')
+        relogioIcone.classList.add('fa-regular')
+        relogioIcone.classList.add('fa-clock')
+        relogioIcone.classList.add('clock')
+        duracao.appendChild(relogioIcone)
+
         //cria especializaçao
         let especializacao = document.createElement('p')
         especializacao.classList.add('especialista')
-        especializacao.innerText = listaProcessos[i].especializacao
+        if(!listaProcessos[i].especializacao){
+            especializacao.classList.add("semEspecializacao")
+            especializacao.innerText = "Sem Especialista"
+        }
+        else{
+            
+            especializacao.innerText = listaProcessos[i].especializacao
+        }
         processo.appendChild(especializacao)
 
         //cria area boteos
@@ -313,6 +331,7 @@ function mostrarProcessos(listaProcessos){
         botaoPesquisa.setAttribute("onClick","verificarTipoProcesso(" + JSON.stringify(listaProcessos[i]) + ")")
         
 
+        /* DECIDIR SE VAI OU NAO PRO PROJETO FINAL
         //cria botao exportar
         let botaoExportar = document.createElement('button')
         let iconeExportar = document.createElement('i')
@@ -322,6 +341,7 @@ function mostrarProcessos(listaProcessos){
         divAcoes.appendChild(botaoExportar)
         botaoExportar.appendChild(iconeExportar)
         //botaopesquisa.setAttribute('onclick'...)
+        */
     }
 }
 
@@ -349,7 +369,7 @@ input.addEventListener('change', function(){
 })
 
 function desestruturar(arrayProcessosImportada){
-    alert('CHEGOU EM DESESTRUTURAR ' + arrayProcessosImportada)
+    //alert('CHEGOU EM DESESTRUTURAR ' + arrayProcessosImportada)
     array = JSON.parse(arrayProcessosImportada)
     console.log(array)
     console.log(typeof(array))
@@ -368,3 +388,23 @@ function desestruturar(arrayProcessosImportada){
    
     
 }
+
+//inserir dado local storage
+
+function salvarLocalStorage(){
+    console.log("salvo")
+    localStorage.setItem("arrayProcessosSalva", JSON.stringify(arrayProcessos) )
+}
+
+
+//restartar sem perder dados
+
+//resgatar item
+function testeRecup(){
+    let teste = localStorage.getItem("arrayProcessosSalva")
+    console.log(teste)
+    desestruturar(teste)
+    mostrarProcessos(arrayProcessos)
+}
+
+testeRecup()
