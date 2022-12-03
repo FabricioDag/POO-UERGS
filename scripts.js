@@ -100,7 +100,7 @@ function validar(nome, duracao, especializacao){
 
 function criarProcesso(nome,duracao){
     let processo = new Processo
-    processo.id = arrayProcessos.length + 1
+    processo.id = pegarIdAtual()
     processo.nome = nome
     processo.duracao = duracao
     arrayProcessos.push(processo)
@@ -108,26 +108,35 @@ function criarProcesso(nome,duracao){
 
 function criarProcessoEspecializado(nome,duracao,especializacao){
     let processo = new ProcessoEspecializado
-    processo.id = arrayProcessos.length + 1
+    processo.id = pegarIdAtual()
     processo.nome = nome
     processo.duracao = duracao
     processo.especializacao = especializacao
     arrayProcessos.push(processo) 
 }
 
-//antiga abaixo 
-/*
-function adicionar(){
-    let processo = new Processo
-    processo.id = arrayProcessos.length + 1
-    processo.nome = document.getElementById('nomeProcesso').value
-    processo.duracao = document.getElementById('duracaoProcesso').value
-    console.log(processo)
-    arrayProcessos.push(processo)
-    console.log(arrayProcessos)
-    validar()
+function pegarIdAtual(){
+    console.log('chegou em pegar id atual')
+    if(arrayProcessos == ''){
+        idAtual = 1;
+        console.log(idAtual)
+    }else{
+       comprimento = arrayProcessos.length
+       console.log("comprimento: "+comprimento)
+
+       ultimo = comprimento - 1
+       console.log("ultimo:" + ultimo)
+
+       ultimoId = arrayProcessos[ultimo].id
+       console.log("ultimoID: " + ultimoId)
+
+       idAtual = ultimoId + 1
+       console.log("idAtual: " + idAtual)
+
+    }
+    return idAtual
 }
-*/
+
 
 function adicionar(){
     if(editId != null){
@@ -316,3 +325,46 @@ function mostrarProcessos(listaProcessos){
     }
 }
 
+
+const input = document.querySelector('#inputArquivo')
+const preview = document.querySelector('#preview')
+
+input.addEventListener('change', function(){
+    console.log(this.files)
+    const arquivo = this.files[0];
+    
+
+    const leitor = new FileReader();
+
+    leitor.addEventListener('load', function(){
+        preview.value = leitor.result
+        desestruturar(leitor.result)
+        mostrarProcessos(arrayProcessos)
+    })
+
+    if(arquivo){
+        leitor.readAsText(arquivo)
+        
+    }
+})
+
+function desestruturar(arrayProcessosImportada){
+    alert('CHEGOU EM DESESTRUTURAR ' + arrayProcessosImportada)
+    array = JSON.parse(arrayProcessosImportada)
+    console.log(array)
+    console.log(typeof(array))
+
+    for(let i = 0; i < array.length; i++){
+        console.log(array[i])
+        if(array[i].especializacao != null){
+            console.log('processo especializado')
+            criarProcessoEspecializado(array[i].nome,array[i].duracao,array[i].especializacao)
+        }
+        else{
+            console.log('processo normal')
+            criarProcesso(array[i].nome,array[i].duracao)
+        }
+    }
+   
+    
+}
